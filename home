@@ -1,0 +1,48 @@
+{% extends 'shop/base.html' %}
+{% load static %}
+{% block title %}Jordan Shoes | Início{% endblock %}
+{% block content %}
+<section class="hero">
+  <div class="hero-text">
+    <p class="eyebrow">Nova coleção disponível</p>
+    <h1>Ténis Jordan com estilo de loja profissional.</h1>
+    <p>Explora novidades, modelos para homem, mulher e criança com uma experiência mais moderna e responsiva.</p>
+    <div class="hero-actions">
+      <a href="{% url 'promotions' %}" class="btn">Ver promo&#231;&#245;es</a>
+    </div>
+  </div>
+  <div class="hero-card hero-logo-card">
+    <img src="{% static 'img/logo10.PNG' %}" alt="Jordan">
+    <small>Design moderno • Carrinho • Pesquisa</small>
+  </div>
+</section>
+
+<section id="destaques" class="section-head">
+  <div>
+    <p class="eyebrow dark">Escolhas principais</p>
+    <h2>Destaques</h2>
+  </div>
+  <a href="{% url 'search_products' %}?q=Jordan">Ver todos</a>
+</section>
+<div class="product-grid">
+  {% for product in featured %}
+    {% include 'shop/partials/product_card.html' %}
+  {% empty %}
+    <div class="empty-state">Sem produtos em destaque.</div>
+  {% endfor %}
+</div>
+
+<section class="section-head">
+  <div>
+    <p class="eyebrow dark">Catálogo</p>
+    <h2>Todos os produtos</h2>
+  </div>
+</section>
+<div class="product-grid">
+  {% for product in products %}
+    {% include 'shop/partials/product_card.html' %}
+  {% empty %}
+    <div class="empty-state">Ainda não existem produtos.</div>
+  {% endfor %}
+</div>
+{% endblock %}
